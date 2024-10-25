@@ -1,4 +1,4 @@
-# Instructions for Excercise 4
+# Instructions for Exercise 4
 
 1. Run `rockcraft init` to create a boilerplate `rockcraft.yaml` file
 2. Open `rockcraft.yaml` with your favorite editor
@@ -12,16 +12,16 @@ jupyter-pytorch:
     plugin: python
     source: .
     python-packages:
-      - jupyter
+        - jupyter
     python-requirements:
-      - requirements.txt
+        - requirements.txt
     stage-packages:
-      - python3-venv
+        - python3-venv
 
-  matplotlib:
+matplotlib:
     plugin: nil
     stage-packages:
-      - python3-matplotlib
+        - python3-matplotlib
 
 ```
 7. Add a service to launch jupyter:
@@ -32,7 +32,7 @@ services:
     command: jupyter notebook --ip=0.0.0.0 --port=8848 --no-browser
     startup: enabled
 ```
-8. Specify the `__daemon__` user to be the one to run the service by adding:
+8. Specify the `_daemon_` user to be the one to run the service by adding:
 ```
 run-user: _daemon_
 ```
