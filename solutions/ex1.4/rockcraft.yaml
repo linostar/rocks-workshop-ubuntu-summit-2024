@@ -1,5 +1,5 @@
 name: numpy
-base: ubuntu@22.04
+base: ubuntu@24.04
 version: '0.4'
 summary: A rock for PyTorch, Jupyter and Matplotlib
 license: GPL-3.0
@@ -26,12 +26,14 @@ parts:
     source: .
     python-packages:
       - jupyter
-    python-requirements:
-      - requirements.txt
     stage-packages:
       - python3-venv
+    override-build: |
+      pip3 install -t ${CRAFT_PART_INSTALL} -r requirements.txt --break-system-packages
+      craftctl default
 
   matplotlib:
     plugin: nil
     stage-packages:
       - python3-matplotlib
+

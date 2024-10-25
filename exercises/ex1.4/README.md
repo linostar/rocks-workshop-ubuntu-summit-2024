@@ -13,10 +13,11 @@ jupyter-pytorch:
     source: .
     python-packages:
         - jupyter
-    python-requirements:
-        - requirements.txt
     stage-packages:
         - python3-venv
+    override-build: |
+        pip3 install -t ${CRAFT_PART_INSTALL} -r requirements.txt --break-system-packages
+        craftctl default
 
 matplotlib:
     plugin: nil
@@ -59,3 +60,4 @@ docker run -p 8848:8848 -it --rm numpy:0.4 --verbose
 ```
 11. Get the link of the jupyter server from the logs
 12. Navigate to the jupyter link in a browser
+
