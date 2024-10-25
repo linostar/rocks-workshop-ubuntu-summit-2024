@@ -3,7 +3,7 @@
 1. Run `rockcraft init` to create a boilerplate `rockcraft.yaml` file
 2. Open `rockcraft.yaml` with your favorite editor
 3. Change `name` field to `numpy` and `version` to `0.4`
-4. Change the `base` field value to `bare`, and add a new line `build-base: ubuntu@22.04`
+4. Change the `base` field value to `ubuntu@22.04`
 4. Change `summary` and `description` fields to something meaningful
 5. Change the value(s) under `platforms` to match your architectures (e.g. `arm64`, `riscv64`, `ppc64le`, `s390x`)
 6. Under `parts`, paste from below:

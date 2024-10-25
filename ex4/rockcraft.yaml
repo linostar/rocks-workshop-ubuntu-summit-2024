@@ -1,6 +1,5 @@
 name: numpy
-base: bare
-build-base: ubuntu@22.04
+base: ubuntu@22.04
 version: '0.4'
 summary: A rock for PyTorch, Jupyter and Matplotlib
 license: GPL-3.0
