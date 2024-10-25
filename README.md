@@ -15,5 +15,7 @@ Run `sudo snap install rockcraft --classic`
 
 ### Chisel
 Run `sudo snap install chisel`
+
 or `go install github.com/canonical/chisel/cmd/chisel@latest`
-or download from [Chisel releases](https://github.com/canonical/chisel/releases)
+
+or download from [Chisel releases](https://github.com/canonical/chisel/releases).
