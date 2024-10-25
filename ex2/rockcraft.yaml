@@ -1,0 +1,19 @@
+name: numpy
+base: bare
+build-base: ubuntu@24.04
+version: '0.2'
+summary: Numpy rock
+description: |
+  Numpy rock with bare base
+platforms:
+    amd64:
+
+parts:
+    numpy:
+        plugin: nil
+        stage-packages:
+            - python3-numpy
+        override-build: |
+            craftctl default
+            ln -s /usr/lib/x86_64-linux-gnu/blas/libblas.so.3 ${CRAFT_PART_INSTALL}/usr/lib/x86_64-linux-gnu/libblas.so.3
+            ln -s /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3 ${CRAFT_PART_INSTALL}/usr/lib/x86_64-linux-gnu/liblapack.so.3

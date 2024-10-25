@@ -1,0 +1,14 @@
+name: numpy
+base: ubuntu@24.04
+version: '0.1'
+summary: Numpy rock
+description: |
+  Numpy rock with Ubuntu base
+platforms:
+    amd64:
+
+parts:
+    numpy:
+        plugin: nil
+        overlay-packages:
+            - python3-numpy

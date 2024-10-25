@@ -1,0 +1,38 @@
+name: numpy
+base: bare
+build-base: ubuntu@22.04
+version: '0.4'
+summary: A rock for PyTorch, Jupyter and Matplotlib
+license: GPL-3.0
+description: |
+    This rock contains PyTorch, Jupyter and Matplotlib.
+    It is a rock for data science and machine learning.
+platforms: # the platforms this rock should be built on and run on
+    amd64:
+
+run-user: _daemon_
+
+environment:
+  JUPYTERLAB_DIR: /share/jupyter/lab
+
+services:
+  jupyter:
+    override: replace
+    command: jupyter notebook --ip=0.0.0.0 --port=8848 --no-browser
+    startup: enabled
+
+parts:
+  jupyter-pytorch:
+    plugin: python
+    source: .
+    python-packages:
+      - jupyter
+    python-requirements:
+      - requirements.txt
+    stage-packages:
+      - python3-venv
+
+  matplotlib:
+    plugin: nil
+    stage-packages:
+      - python3-matplotlib

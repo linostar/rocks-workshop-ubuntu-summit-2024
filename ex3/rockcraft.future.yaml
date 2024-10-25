@@ -1,0 +1,16 @@
+name: numpy
+base: bare
+build-base: ubuntu@24.04
+version: '0.3'
+summary: Numpy rock
+description: |
+  Numpy chiselled rock with bare base
+platforms:
+    amd64:
+
+parts:
+    numpy:
+        plugin: nil
+        stage-packages:
+            - python3-numpy_bins
+
