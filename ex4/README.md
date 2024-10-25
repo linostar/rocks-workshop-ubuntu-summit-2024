@@ -1,4 +1,4 @@
-# Instructions for Excercise 3
+# Instructions for Excercise 4
 
 1. Run `rockcraft init` to create a boilerplate `rockcraft.yaml` file
 2. Open `rockcraft.yaml` with your favorite editor
