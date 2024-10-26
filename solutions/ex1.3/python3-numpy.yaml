@@ -1,0 +1,26 @@
+package: python3-numpy
+
+essential:
+  - python3-numpy_copyright
+
+slices:
+  bins:
+    essential:
+      - libblas3_libs
+      - libc6_libs
+      - libgcc-s1_libs
+      - liblapack3_libs
+      - python3.12_standard
+      - python3-pkg-resources_modules
+    contents:
+      /usr/bin/dh_numpy3:
+      /usr/lib/python3/dist-packages/numpy-*.dist-info/**:
+      /usr/lib/python3/dist-packages/numpy/**:
+      /usr/lib/*-linux-*/pkgconfig/numpy.pc:
+      /usr/share/numpy3/versions:
+      /usr/share/perl5/Debian/Debhelper/Sequence/numpy3.pm:
+      /usr/bin/f2py*:
+
+  copyright:
+    contents:
+      /usr/share/doc/python3-numpy/copyright:

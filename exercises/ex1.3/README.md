@@ -8,10 +8,24 @@
 5. Change the value(s) under `platforms` to match your architectures (e.g. `arm64`, `riscv64`, `ppc64le`, `s390x`)
 6. Under `parts`, change the part name from `my-part` to `numpy`
 6. Let's slice the `python3-numpy` package using Chisel
+    a. Run `chisel find python3*` to see if python3-numpy has been already sliced
+    b. since it's not sliced already, we'll do it ourselves by creating an empty file called `python3-numpy.yaml`
+    c. The first line in the file should be `package: python3-numpy.yaml`
+    d. Next, add the `slices:` line, then a slice called `bins` directly under it by adding the line `bins:`
+    d. Next, we determine the dependencies of this package by running `apt depends python3-numpy`
+    e. We can find if the dependency slices (if they exist) by running `chisel find <name>` or `chisel info <name>`
+    f. We start adding the dependencies in the yaml file one by one in a list under `essential:` field under `bins:`
+    g. Next, let's determine the contents of the `python3-numpy` package by downloading and listing the deb file contents: `apt download python3-numpy` then `dpkg-deb -c python3-numpy*deb`
+    h. Add `contents:` under `bins:` then add the full paths of the files you want to include in your slice under `contents:`
+    i. It is highly recommended to use globs to simplify the paths included under `contents:`, and to mask versions and architectures
+    i. In a similar fashion, add another slice called `copyright` that contains no dependencies but has the copyright files in contents
+    j. List the copyright slice under a top-level `essential` field so that it gets included in every other slice in that package
+    j. Once done with python3-numpy slicing, you can do the same for any unsliced package that it depends on
 7. Under `plugin: nil` add the following lines: 
 ```yaml
-  source: chisel-releases
-  source-type: local
+  source: https://github.com/zhijie-yang/chisel-releases
+  source-type: git
+  source-tag: numpy-24.04
   override-build: |
     chisel cut --release ./ --root ${CRAFT_PART_INSTALL} python3-numpy_bins
 ```
