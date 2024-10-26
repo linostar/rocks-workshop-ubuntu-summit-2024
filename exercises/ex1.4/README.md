@@ -8,22 +8,20 @@
 5. Change the value(s) under `platforms` to match your architectures (e.g. `arm64`, `riscv64`, `ppc64le`, `s390x`)
 6. Under `parts`, paste from below:
 ```yaml
-jupyter-pytorch:
+  jupyter-pytorch:
     plugin: python
     source: .
     python-packages:
-        - jupyter
+      - jupyter
+    python-requirements:
+      - requirements.txt
     stage-packages:
-        - python3-venv
-    override-build: |
-        pip3 install -t ${CRAFT_PART_INSTALL} -r requirements.txt --break-system-packages
-        craftctl default
+      - python3-venv
 
-matplotlib:
+  matplotlib:
     plugin: nil
     stage-packages:
-        - python3-matplotlib
-
+      - python3-matplotlib
 ```
 7. Add a service to launch jupyter:
 ```
