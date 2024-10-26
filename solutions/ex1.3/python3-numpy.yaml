@@ -14,12 +14,9 @@ slices:
       - python3-pkg-resources_modules
     contents:
       /usr/bin/dh_numpy3:
-      /usr/lib/python3/dist-packages/numpy-*.dist-info/**:
-      /usr/lib/python3/dist-packages/numpy/**:
-      /usr/lib/*-linux-*/pkgconfig/numpy.pc:
-      /usr/share/numpy3/versions:
-      /usr/share/perl5/Debian/Debhelper/Sequence/numpy3.pm:
       /usr/bin/f2py*:
+      /usr/lib/python3/dist-packages/numpy/**:
+      /usr/share/numpy3/versions:
 
   copyright:
     contents:
