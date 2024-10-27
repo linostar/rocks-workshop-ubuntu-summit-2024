@@ -1,0 +1,28 @@
+name: mysql
+base: ubuntu@24.04 
+version: '0.1' 
+summary: MySQL rock
+description: A rock containg MySQL server
+platforms: 
+    amd64:
+
+services:
+    mysql-server:
+        override: replace
+        startup: enabled
+        command: bash -c "mysqld --initialize-insecure; mysqld --bind-address=0.0.0.0"
+
+    add-root-user:
+        override: replace
+        startup: enabled
+        command: /add-root.sh
+        on-success: ignore
+        on-failure: ignore
+
+parts:
+    mysql:
+        plugin: dump
+        source: scripts/
+        source-type: local
+        overlay-packages:
+            - mysql-server-8.0

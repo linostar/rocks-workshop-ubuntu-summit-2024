@@ -1,0 +1,52 @@
+name: mysql
+base: bare
+build-base: ubuntu@24.04
+version: '0.2'
+summary: Single-line elevator pitch for your amazing rock
+description: This is mysql's description.
+platforms:
+    amd64:
+
+services:
+  mysql:
+    command: /mysql.sh
+    override: replace
+    startup: enabled
+    user: mysql
+    environment:
+      MYSQL_DATABASE: mydb
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypass
+    on-success: ignore
+    on-failure: ignore
+
+parts:
+    mysql-scripts:
+        plugin: nil
+        source: .
+        source-type: local
+        override-build: |
+          cp mysql.sh ${CRAFT_PART_INSTALL}/
+          chmod +x ${CRAFT_PART_INSTALL}/mysql.sh
+          chown 90 ${CRAFT_PART_INSTALL}/mysql.sh    
+
+    mysql-server:
+        plugin: nil
+        source-type: git
+        source: https://github.com/zhijie-yang/chisel-releases
+        source-tag: final-mysql-24.04
+        override-build: |
+          set -xe
+          chisel cut --release ./ --root ${CRAFT_PART_INSTALL} mysql-server-8.0_bins
+          groupadd --root ${CRAFT_PART_INSTALL} -r mysql
+          useradd --root ${CRAFT_PART_INSTALL} -g mysql -d /var/lib/mysql -r -u 90 mysql
+          chroot ${CRAFT_PART_INSTALL} mkdir -p /var/run/mysqld /var/log/mysql /var/lib/mysql-upgrade /var/lib/mysql-keyring
+          chroot ${CRAFT_PART_INSTALL} chown -R 90 /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-upgrade /var/lib/mysql-keyring /var/log/mysql /var/run/mysqld
+          chroot ${CRAFT_PART_INSTALL} chmod 750 /var/log/mysql
+        stage-packages:
+          - base-files_base
+          - base-passwd_data
+          - bash_bins
+          - coreutils_bins
+
