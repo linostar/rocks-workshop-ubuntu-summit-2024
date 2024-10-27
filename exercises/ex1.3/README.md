@@ -10,7 +10,7 @@
 6. Let's slice the `python3-numpy` package using Chisel (Check [Contributing doc](https://github.com/canonical/chisel-releases/blob/main/CONTRIBUTING.md) for more info)
     1. Run `chisel find python3*` to see if python3-numpy has been already sliced
     2. since it's not sliced already, we'll do it ourselves by creating an empty file called `python3-numpy.yaml`
-    3. The first line in the file should be `package: python3-numpy.yaml`
+    3. The first line in the file should be `package: python3-numpy`
     4. Next, add the `slices:` line, then a slice called `bins` directly under it by adding the line `bins:`
     5. Next, we determine the dependencies of this package by running `apt depends python3-numpy`
     6. We can find if the dependency slices (if they exist) by running `chisel find <name>` or `chisel info <name>`

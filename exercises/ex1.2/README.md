@@ -10,6 +10,7 @@
 7. Under `plugin: nil` add the following lines: 
 ```yaml
         stage-packages:
+            - base-files
             - python3-numpy
         override-build: |
             craftctl default
