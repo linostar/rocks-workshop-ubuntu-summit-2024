@@ -12,6 +12,7 @@ parts:
     numpy:
         plugin: nil
         stage-packages:
+            - base-files
             - python3-numpy
         override-build: |
             craftctl default
